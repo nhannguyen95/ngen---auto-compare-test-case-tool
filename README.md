@@ -10,3 +10,5 @@ note: use the gen.cpp's random platform in repository, don't use srand(time(0)) 
 
 Usage: ./ngen.out ./gen.out ./mine.out ./their.out 9
 ![alt tag](http://i.imgur.com/oE45ncu.png)
+
+Author: nhannguyen95.wordpress.com
