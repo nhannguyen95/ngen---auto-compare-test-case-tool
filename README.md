@@ -9,4 +9,4 @@ Compile ngen.cpp, we have ngen.out and it takes 4 arguments:
 note: use the gen.cpp's random platform in repository, don't use srand(time(0)) + rand() !
 
 Usage: ./ngen.out ./gen.out ./mine.out ./their.out 9
-![alt tag](https://photos.google.com/search/_tra_/photo/AF1QipNNKauqMnz5AtmFhm9WgyG0d46J-zTXiBhGkUMb)
+![alt tag](http://i.imgur.com/oE45ncu.png)
