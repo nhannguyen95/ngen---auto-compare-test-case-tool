@@ -6,7 +6,8 @@ Compile ngen.cpp, we have ngen.out and it takes 4 arguments:
 + mine.out: your algorithm file
 + their.out: the right algorithm file
 + n: an integer, number of test cases you want the program to create
-(note: use the gen.cpp's random platform in repository, don't use srand(time(0)) + rand() !)
+
+Note: use the gen.cpp's random platform in repository, don't use srand(time(0)) + rand() !
 
 Usage: ./ngen.out ./gen.out ./mine.out ./their.out 9
 ![alt tag](http://i.imgur.com/oE45ncu.png)
