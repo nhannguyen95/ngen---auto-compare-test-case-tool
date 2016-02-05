@@ -46,6 +46,16 @@ char * getFileContent( const char * fullpath ) {
     return block;
 }
 
+char * compile(const char * cppFilePath, const char * outFileName) {
+    char * outFilePath = getFullFilePath( getPath(cppFilePath), outFileName );
+    char cm[MAX_LEN] = "g++ ";
+    strcat(cm, cppFilePath);
+    strcat(cm, " -o ");
+    strcat(cm, outFilePath);
+    system(cm);
+    return outFilePath;
+}
+
 int main(int argc, const char * argv[]) {
     
     if ( argc != 5 ) {
@@ -53,8 +63,13 @@ int main(int argc, const char * argv[]) {
         return 1;
     }
     
-    // get gen file's dir
-    char * genFilePath = getPath(argv[1]);
+    // get *.cpp files dir
+    char * genFilePath   = getPath(argv[1]);
+    
+    // compile to *.out files
+    char * genOutFilePath   = compile(argv[1], "gen.out");
+    char * mineOutFilePath  = compile(argv[2], "mine.out");
+    char * theirOutFilePath = compile(argv[3], "their.out");
     
     // create tmp.txt, tmp2.txt, tmp3.txt
     // in gen file's dir
@@ -76,7 +91,7 @@ int main(int argc, const char * argv[]) {
         
         // write auto-generate input to tmp.txt
         // input also appears in terminal
-        strcpy(cm, argv[1]);
+        strcpy(cm, genOutFilePath);
         strcat(cm, " 2>&1 | tee ");
         strcat(cm, tmpFileFullPath);
         system(cm);
@@ -87,7 +102,7 @@ int main(int argc, const char * argv[]) {
         strcpy(cm, "cat ");
         strcat(cm, tmpFileFullPath);
         strcat(cm, " | ");
-        strcat(cm, argv[2]);
+        strcat(cm, mineOutFilePath);
         strcat(cm, " 2>&1 | tee ");
         strcat(cm, tmp2FileFullPath);
         system(cm);
@@ -98,7 +113,7 @@ int main(int argc, const char * argv[]) {
         strcpy(cm, "cat ");
         strcat(cm, tmpFileFullPath);
         strcat(cm, " | ");
-        strcat(cm, argv[3]);
+        strcat(cm, theirOutFilePath);
         strcat(cm, " 2>&1 | tee ");
         strcat(cm, tmp3FileFullPath);
         system(cm);
@@ -126,6 +141,11 @@ int main(int argc, const char * argv[]) {
     remove( tmpFileFullPath );
     remove( tmp2FileFullPath );
     remove( tmp3FileFullPath );
+    
+    // delete out files
+    remove( genOutFilePath );
+    remove( mineOutFilePath );
+    remove( theirOutFilePath );
     
     // free memory
     delete [] genFilePath;
