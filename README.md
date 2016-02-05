@@ -2,9 +2,9 @@
 This tool is built based on the Shell code on Unix/Linux/Mac, thus it can only run on those platforms.
 
 Compile ngen.cpp, we have ngen.out and it takes 4 arguments:
-+ gen.out: the file to generate test case, you have to write it yourself
-+ mine.out: your algorithm file
-+ their.out: the right algorithm file
++ gen.cpp file path: the file to generate test case, you have to write it yourself
++ mine.cpp file path: your algorithm file
++ their.cpp file path: the right algorithm file
 + n: an integer, number of test cases you want the program to create
 
 Note: use the gen.cpp's random pattern in repository, don't use srand(time(0)) + rand() !
